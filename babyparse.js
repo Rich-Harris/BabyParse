@@ -45,7 +45,7 @@
 	function ParseFiles(_input, _config)
 	{
 		if (typeof fs === "undefined") {
-			throw new {
+			throw {
 				code: -1,
 				message: "ParseFiles is not supported in your environment due to a missing dependency (fs)"
 			};
