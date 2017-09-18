@@ -37,11 +37,19 @@
 	Baby.DefaultDelimiter = ",";		// Used if not specified and detection fails
 	Baby.Parser = Parser;				// For testing/dev only
 	Baby.ParserHandle = ParserHandle;	// For testing/dev only
-	
-	var fs = fs || require('fs')
+
+	if (typeof require !== "undefined") {
+		var fs = fs || require('fs');
+	}
 	
 	function ParseFiles(_input, _config)
 	{
+		if (typeof fs === "undefined") {
+			throw {
+				code: -1,
+				message: "ParseFiles is not supported in your environment due to a missing dependency (fs)"
+			};
+		}
 		if (Array.isArray(_input)) {
 			var results = [];
 			_input.forEach(function(input) {
