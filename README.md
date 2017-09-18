@@ -1,3 +1,9 @@
+# Deprecated in favour of [Papa Parse](http://papaparse.com)
+
+## This was a Node-friendly fork of Papa Parse. Since Papa Parse now supports Node directly, you should use that instead.
+
+---
+
 Baby Parse
 =========
 
