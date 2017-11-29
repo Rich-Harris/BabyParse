@@ -37,9 +37,31 @@
 	Baby.DefaultDelimiter = ",";		// Used if not specified and detection fails
 	Baby.Parser = Parser;				// For testing/dev only
 	Baby.ParserHandle = ParserHandle;	// For testing/dev only
-	
-	var fs = fs || require('fs')
-	
+	/**
+	* 
+	* Fix for; 
+	* ERROR in ./node_modules/babyparse/babyparse.js
+	* Module not found: Error: Can't resolve 'fs' in 'C:\work\git_mehmet\bitek-web-grid\node_modules\babyparse'
+	* @ ./node_modules/babyparse/babyparse.js 41:16-29
+	* @ ./src/lib/components/fixeddatatable/fixedtable.js
+	* @ ./src/lib/components/fixeddatatable/grid.js
+	* @ ./stories/index.js
+	* @ ./.storybook/config.js
+	* @ multi ./node_modules/@storybook/react/dist/server/config/polyfills.js ./node_modules/@storybook/react/dist/server/config/globals.js ./node_modules/webpack-hot-middleware/client.js?reload=true ./.storybook/config.js
+	* 
+	*/
+	var fs = fs;
+	if(!fs){
+		try{
+			fs = require('fs');
+		}catch(e){
+			/**
+			 * No log structure for now, it seems
+			 * 
+			 */
+			console.warn(e);
+		}
+	}
 	function ParseFiles(_input, _config)
 	{
 		if (Array.isArray(_input)) {
